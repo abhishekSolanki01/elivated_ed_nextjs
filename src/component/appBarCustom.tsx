@@ -149,7 +149,7 @@ function AppBarCustom() {
                 }}
                 sx={{
                   display: { xs: 'block', md: 'none' },
-                }}ç
+                }}
               >
                 {pages.map((page : any) => (
                   <MenuItem key={page.name} onClick={(event: any) => { 
