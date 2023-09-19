@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const handler = async(req: NextApiRequest, res: NextApiResponse) => {
   try{
-    connectToDataBase()
+    await connectToDataBase()
 
     if(req.method==="POST"){
       const { username, password } = req.body;

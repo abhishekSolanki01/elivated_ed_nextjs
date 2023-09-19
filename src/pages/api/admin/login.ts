@@ -3,11 +3,10 @@ import Admin from "../../../../db/models/admin";
 import { connectToDataBase } from "@/pages/db/database";
 
 const jwt = require('jsonwebtoken');
-// const Admin = require('../db/admin');
 
 const handler = async(req: NextApiRequest, res: NextApiResponse) => {
   try{
-    connectToDataBase()
+    await connectToDataBase()
 
     if(req.method==="POST"){
       const {username, password} = req.headers;
@@ -28,6 +27,8 @@ const handler = async(req: NextApiRequest, res: NextApiResponse) => {
     }
   }catch(error){
     res.send(400)
+    console.log(error);
+    
   }
 }
 
