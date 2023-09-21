@@ -11,5 +11,5 @@ const courseSchema = new Schema({
     summary: Array,
   })
 
-export  const Course = model('course', courseSchema)
+export default mongoose.models.course ||  model('course', courseSchema)
 
