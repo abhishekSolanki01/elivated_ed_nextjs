@@ -7,7 +7,7 @@ import withMiddleware from "@/middleware"
 const handler = async(req: any, res: any) => {
     try {
 
-        if(req.method==="POST"){
+        if(req.method==="GET"){
             
             const isUserExist = await Admin.exists({ username: req.user.username })
             

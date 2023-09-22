@@ -8,5 +8,5 @@ const userSchema = new Schema({
     purchasedCourses: [{ type: Schema.Types.ObjectId, ref: 'course'}]//, unique: true}]
   })
 
-export const User = model('user', userSchema)
+export const User = mongoose.models.user || model('user', userSchema)
 
