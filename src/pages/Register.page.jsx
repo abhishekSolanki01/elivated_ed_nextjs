@@ -73,14 +73,14 @@ function Register() {
                         <AccountCircle sx={{
                             mt: 3,
                             // position: 'absolute', top: '15%', left: '50%', 
-                            width: 70, height: 70, 
+                            width: 50, height: 50, 
                             // transform: "translateX(-50%)",
                             textAlign: "center",
                         }} />
                         </Box>
 
                         <Box sx={{ '& > :not(style)': { m: 4 }, m: 5, height: "auto" }}>
-                            <Typography variant="h4">Register to the Site</Typography>
+                            <Typography align="center" variant="h4">Register to the Site</Typography>
 
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                 <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -92,10 +92,11 @@ function Register() {
                                 <TextField required sx={{ width: 300 }} id="input-with-sx" label="Password" variant="standard" type="password" onChange={e => setPassword(e.target.value)} />
                             </Box>
 
-                            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', t: 3 }} t={3}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }} mb={0}>
+                                <Typography align="center" gutterBottom variant="h9">Already a user? <Link href="/Login">Login</Link> </Typography>
+
                                 <Button onClick={register} variant="contained" >Signup</Button>
                             </Box>
-                            <Typography variant="h9">Already a user? <Link href="/Login">Login</Link> </Typography>
 
                         </Box>
 

@@ -117,7 +117,7 @@ function Login() {
                         </Box>
 
                         <Box sx={{ '& > :not(style)': { m: 4, mt: 0 }, m: 0, height: "auto" }}>
-                            <Typography variant="h4">Login to the site</Typography>
+                            <Typography align="center" variant="h4">Login to the site</Typography>
 
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', mt: 0 }}>
                                 <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -130,7 +130,7 @@ function Login() {
                             </Box>
 
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }} mb={0}>
-                                <Typography variant="h9" gutterBottom>New here? <Link href="/Register">Register</Link> </Typography>
+                                <Typography align="center" variant="h9" gutterBottom>New here? <Link href="/Register">Register</Link> </Typography>
                                 <Button onClick={login} variant="contained" >Login</Button>
 
                             </Box>

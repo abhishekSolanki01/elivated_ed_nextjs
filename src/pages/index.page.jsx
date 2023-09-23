@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import CourseCard from "../component/CourseCard";
 import { userState } from "../store/atoms/user";
-import {userEmailStatus} from '../store/selectors/userEmail'
+import { userEmailStatus } from '../store/selectors/userEmail'
 import { snackBarState } from "../store/atoms/snackBar";
 import { useState } from "react";
 import Image from "next/image";
@@ -35,8 +35,18 @@ function Landing() {
                             // justifyContent: 'space-around'
                         }}>
 
-                            <Typography gutterBottom={4} sx={{display: "flex", flexWrap:"wrap"}} variant="h3">Simplify  <span style={{color: '#41a5f5'}}>Learning</span>, Amplify <span style={{color: "#41a5f5"}}>Growth</span></Typography>
-                            <Typography variant="h5" sx={{textAlign:"initial"}}>Welcome to <span style={{color:"#41a5f5"}}>LEARNit</span>, your gateway to a world of knowledge and skill enhancement! Our cutting-edge course selling web application is designed to help educators, professionals, and knowledge seekers easily create, market, and sell their courses online.</Typography>
+                            <Typography gutterBottom={4} sx={{ display: "flex", flexWrap: "wrap", marginBottom: {xs: 10, md: 'inherit'} }} variant="h3">Simplify  <span style={{ color: '#41a5f5' }}>Learning</span>, Amplify <span style={{ color: "#41a5f5" }}>Growth</span></Typography>
+                            <Typography variant="h5" sx={{ textAlign: "initial", textAlign: {xs : 'center', md: 'inherit'}, }}>
+                                Welcome to
+                                <span style={{ color: "#41a5f5" }}>LEARNit</span>
+                                , your gateway to a world of knowledge and skill enhancement!
+                                <Box component="span"
+                                    sx={{
+                                        display: { xs: 'none', md: 'inherit' },
+                                    }}
+                                >Our cutting-edge course selling web application is designed to help educators, professionals, and knowledge seekers easily create, market, and sell their courses online.
+                                </Box>
+                            </Typography>
                             {!user && <Stack spacing={2} mt={6} direction="row" alignItems="center" justifyContent="center">
                                 <Button variant="contained" onClick={() => { router.push('/Login') }} >Login</Button>
                                 <Button variant="outlined" onClick={() => { router.push('/Register') }}  >Signup</Button>
@@ -46,7 +56,7 @@ function Landing() {
 
                     </Box>
                 </Grid>
-                <Grid item sm={6} xs={12}>
+                <Grid item sm={6} xs={12} sx={{display: {xs: 'none', md:'inherit'}}}>
                     <Box sx={{
                         height: "90vh", display: 'flex',
                         flexDirection: 'column',
@@ -59,20 +69,20 @@ function Landing() {
                 </Grid>
             </Grid>
 
-            {user && <> <Box style={{border: "1px solid #41a5f5", width: 300, margin: "auto", marginBottom: 30 }}/>
+            {user && <> <Box style={{ border: "1px solid #41a5f5", width: 300, margin: "auto", marginBottom: 30 }} />
 
-            <Grid container sx={{ justifyContent: 'space-between' }}>
-                <Grid item xs={12}>
-                    <Box sx={{ height: "fit-content" }} mb={3}>
-                        <Typography variant="h5">Learn at Your Own Pace, Guided by Industry Experts, Interactive & Rich Content.</Typography>
-                        <Stack spacing={2} mt={6} direction="row" alignItems="center" justifyContent="center">
+                <Grid container sx={{ justifyContent: 'space-between' }}>
+                    <Grid item xs={12}>
+                        <Box sx={{ height: "fit-content" }} mb={3}>
+                            <Typography variant="h5" sx={{textAlign:{xs:'center', md:'inherit'}}}>Learn at Your Own Pace, Guided by Industry Experts, Interactive & Rich Content.</Typography>
+                            <Stack spacing={2} mt={6} direction="row" alignItems="center" justifyContent="center">
 
-                            <Courses/>
+                                <Courses />
 
-                        </Stack>
-                    </Box>
-                </Grid>
-            </Grid> </>}
+                            </Stack>
+                        </Box>
+                    </Grid>
+                </Grid> </>}
         </Container>
     </>
 }
@@ -88,9 +98,9 @@ const Courses = () => {
 
 
     const onPurchaseCourseClick = async (id) => {
-        try{
+        try {
             const purchaseCourseRes = await purchaseCourse(id);
-            if(purchaseCourseRes.message === "Course purchased successfully"){
+            if (purchaseCourseRes.message === "Course purchased successfully") {
                 setDisableBuy(true)
                 setSnackBarDetails({
                     message: purchaseCourseRes.message,
@@ -100,7 +110,7 @@ const Courses = () => {
                     showSnackBar: true
                 })
             }
-        }catch(e){
+        } catch (e) {
             setSnackBarDetails({
                 message: e?.response?.data?.message || "Could not purchase",
                 type: 'success',
@@ -119,7 +129,7 @@ const Courses = () => {
     React.useEffect(() => {
         fetchAllCourses()
     }, [])
-    
+
     return (
         <Grid item xs={12}>
             <Grid container justifyContent="center" spacing={3}>
@@ -142,8 +152,8 @@ const Courses = () => {
                             index={index}
                             imageLink={c.imageLink}
                             actions={actions}
-                            onCardClick={() => {router.push(`/ShowSelectedCourse/${c._id}/${purchased}`)}}
-                            // onCardClick={() => {router.push(`/ShowSelectedCourse/purchased/sadasdasd`)}}
+                            onCardClick={() => { router.push(`/ShowSelectedCourse/${c._id}/${purchased}`) }}
+                        // onCardClick={() => {router.push(`/ShowSelectedCourse/purchased/sadasdasd`)}}
 
                         />
                     )

@@ -26,9 +26,10 @@ import { userState } from '../store/atoms/user';
 import {isUserLoading} from '../store/selectors/isUserLoading.js'
 import {userEmailStatus} from '../store/selectors/userEmail'
 
-import avatar from '../../assets/avatar.jpg'
+import avatar from '../../public/avatar.jpg'
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 
 
@@ -206,7 +207,8 @@ function AppBarCustom() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src={"../../assets/avatar.jpg"} />
+                    {/* <Avatar alt="Remy Sharp" src={"../../public/avatar.jpg"} /> */}
+                    <Image src={avatar} width={40} alt="avatar" style={{borderRadius: '50%'}}/>
                   </IconButton>
                 </Tooltip>
                 <Menu
