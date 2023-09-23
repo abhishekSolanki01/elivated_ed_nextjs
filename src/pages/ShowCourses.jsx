@@ -47,6 +47,7 @@ function ShowCourses() {
                         }] 
                         return (
                             <CourseCard 
+                                key={index}
                                 title={c.title} 
                                 description={c.description} 
                                 index={index} 

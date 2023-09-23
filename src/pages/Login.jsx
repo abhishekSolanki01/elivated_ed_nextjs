@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import { AccountCircle, VpnKey } from '@mui/icons-material';
 import { Box, Button, Typography, Grid, Switch, Stack } from "@mui/material";
 import { styled } from '@mui/material/styles';
+import Link from 'next/link'
 
 
 import { useSetRecoilState, useRecoilState } from 'recoil'
@@ -129,7 +130,7 @@ function Login() {
                             </Box>
 
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }} mb={0}>
-                                <Typography variant="h9" gutterBottom>New here? <a href="/Register">Register</a> </Typography>
+                                <Typography variant="h9" gutterBottom>New here? <Link href="/Register">Register</Link> </Typography>
                                 <Button onClick={login} variant="contained" >Login</Button>
 
                             </Box>

@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchPurchasedCourse, purchaseCourse } from "../axios";
-import CourseCard from "./helperComponents/CourseCard";
+import CourseCard from "../component/CourseCard";
 
 import { Grid, Typography } from "@mui/material";
 import { useRouter } from "next/router";
@@ -33,6 +33,7 @@ function ShowPurchasedCourses() {
             <Grid item xs={12}>
                 {courses && <Grid container justifyContent="center" spacing={3}>
                     {courses.map((c, index) => <CourseCard 
+                        key={index}
                         onCardClick={() => {router.push(`/courses/${c._id}/?purchased=${true}`)}}
                         title={c.title} 
                         description={c.description} 

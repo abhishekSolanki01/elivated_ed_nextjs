@@ -58,7 +58,7 @@ export default function CourseCard({
                                 <Box >
                                     {
                                         actions.map((action, index) =>
-                                            <Button size="small" variant={action.variant || "text"} onClick={action.onClick}  disabled ={action.disabled} >{action.title}</Button>
+                                            <Button key={index} size="small" variant={action.variant || "text"} onClick={action.onClick}  disabled ={action.disabled} >{action.title}</Button>
                                         )
                                     }
                                 </Box>

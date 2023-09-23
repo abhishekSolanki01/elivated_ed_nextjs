@@ -16,6 +16,7 @@ import { userState } from "../store/atoms/user";
 
 import img from "../../public/Mobile-login-rafiki.svg"
 import Image from "next/image";
+import Link from 'next/link'
 
 
 /// File is incomplete. You need to add input boxes to take input for users to register.
@@ -94,7 +95,7 @@ function Register() {
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', t: 3 }} t={3}>
                                 <Button onClick={register} variant="contained" >Signup</Button>
                             </Box>
-                            <Typography variant="h9">Already a user? <a href="/Login">Login</a> </Typography>
+                            <Typography variant="h9">Already a user? <Link href="/Login">Login</Link> </Typography>
 
                         </Box>
 

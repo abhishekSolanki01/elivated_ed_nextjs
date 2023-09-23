@@ -13,8 +13,8 @@ export const connectToDataBase = async () => {
   try {
     await mongoose.connect(CONNECTION_STRING, {
       dbName: "courses",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
     });
     isConnected = true;
   } catch (error) {

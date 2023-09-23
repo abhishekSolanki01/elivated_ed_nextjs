@@ -68,8 +68,8 @@ const CourseDetails = () => {
     function generate(element) {
         console.log(courseDetail)
         
-        return courseDetail?.course?.summary && courseDetail.course.summary.map((value) =>
-        (<ListItem>
+        return courseDetail?.course?.summary && courseDetail.course.summary.map((value, index) =>
+        (<ListItem key={index}>
             <Box sx={{backgroundColor: "#41a5f5", width: 10, height: 10, mr: 2, borderRadius: 50 }}></Box>
             <ListItemText
                 primary={value}
