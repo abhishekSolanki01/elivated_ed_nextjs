@@ -23,7 +23,7 @@ import { snackBarState } from "../store/atoms/snackBar";
 
 
 const EditCourse = () => {
-    const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
+    // const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
 
     const setSnackBarDetails = useSetRecoilState(snackBarState)
 
