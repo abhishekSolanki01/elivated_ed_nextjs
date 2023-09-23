@@ -1,23 +1,26 @@
 import axios from "axios"
-const url =  "http://localhost:3000/users" //`/users`
-const admin_url =  "http://localhost:3000/admin" //`/admin`
+import { setCookie,getCookie } from 'cookies-next';
+
+const url =  "http://localhost:3000/api/users" //`/users`
+const admin_url =  "http://localhost:3000/api/admin" //`/admin`
 
 // const url = "https://ec2-16-171-142-201.eu-north-1.compute.amazonaws.com:3000/users";
 // const admin_url = "https://ec2-16-171-142-201.eu-north-1.compute.amazonaws.com:3000/admin"
 
-export const register = async(data, isAdmin = false) => {
+export const register = async(data: any, isAdmin = false) => {
     let URL = isAdmin ? admin_url : url;
     const registerRes = await axios.post(`${URL}/signup`, data);
     if(registerRes?.data?.token){
         localStorage.setItem("token", registerRes?.data?.token)
     }
     if(registerRes.status === 200){
-        localStorage.setItem("isAdmin", isAdmin)
+        setCookie('isAdmin', isAdmin.toString());
+        // localStorage.setItem("isAdmin", isAdmin.toString())
     }
     return registerRes.data
 }
 
-export const login = async (data, isAdmin=false) => {
+export const login = async (data: any, isAdmin=false) => {
     let URL = isAdmin ? admin_url : url;
     const loginRes = await axios({
         url : `${URL}/login`,
@@ -28,12 +31,13 @@ export const login = async (data, isAdmin=false) => {
         localStorage.setItem("token", loginRes?.data?.token)
     }
     if(loginRes.status === 200){
-        localStorage.setItem("isAdmin", isAdmin)
+        setCookie('isAdmin', isAdmin.toString());
+        // localStorage.setItem("isAdmin", JSON.stringify(isAdmin))
     }
     return loginRes.data
 }
 
-export const logout = async (data) => {
+export const logout = async (data: any | null) => {
     // const loginRes = await axios({
     //     url : `${url}/logout`,
     //     method: "post",
@@ -45,12 +49,12 @@ export const logout = async (data) => {
     // if(loginRes?.data?.token){
     //     localStorage.setItem("token", loginRes?.data?.token)
     // }
-    localStorage.setItem("token", null)
+    localStorage.setItem("token", "null")
     return { status: true } //loginRes.data
 }
 
 export const viewAllCourses = async() => {
-    let isAdmin = localStorage.getItem('isAdmin');
+    let isAdmin = getCookie('isAdmin') || "false" //localStorage.getItem('isAdmin') || "false";
     let URL = JSON.parse(isAdmin) ? admin_url : url;
     const courses = await axios({
         method: "get",
@@ -62,8 +66,9 @@ export const viewAllCourses = async() => {
     return courses.data
 }
 
-export const viewCourse = async(id) => {
-    let isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
+export const viewCourse = async(id: any) => {
+    console.log("HERE------");
+    let isAdmin = JSON.parse(localStorage.getItem('isAdmin') || "false");
     let URL = JSON.parse(isAdmin) ? admin_url : url;
     const courses = await axios({
         method: "get",
@@ -75,7 +80,7 @@ export const viewCourse = async(id) => {
     return courses.data
 }
 
-export const purchaseCourse = async(id) => {
+export const purchaseCourse = async(id: string) => {
     const courses = await axios({
         method: "post",
         url: `${url}/courses/${id}`,
@@ -98,7 +103,7 @@ export const fetchPurchasedCourse = async() => {
 }
 
 export const loginStatus = async() => {
-    let isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
+    let isAdmin = JSON.parse(localStorage.getItem('isAdmin') || "false");
     let URL = JSON.parse(isAdmin) ? admin_url : url;
     const status = await axios({
         method: 'get',
@@ -112,7 +117,7 @@ export const loginStatus = async() => {
 
 // admin routes
 
-export const editCourse = async(param, body) =>{
+export const editCourse = async(param: any, body: any) =>{
     const editCourseRes = await axios({
         method: 'put',
         url: `${admin_url}/courses/${param}`,

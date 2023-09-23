@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const handler = async(req: any, res: any) => {
     try {
-        if(req.method === "POST"){
+        if(req.method === "POST"){   
             const { username, password } = req.headers;
             const user = await User.exists({ username, password });
             if(user){

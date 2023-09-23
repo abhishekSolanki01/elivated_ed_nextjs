@@ -6,7 +6,7 @@ const handler = async (req: any, res: any) => {
 
         if (req.method === "GET") {
 
-            console.log("------->",req.user.username);
+            console.log("i am here ------->",req.user.username);
             const isUserExist = await User.exists({ username: req.user.username })
             if (!isUserExist) {
                 res.status(403).send({ message: 'User not found' })

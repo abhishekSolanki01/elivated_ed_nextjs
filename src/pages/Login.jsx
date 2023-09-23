@@ -13,9 +13,12 @@ import { styled } from '@mui/material/styles';
 import { useSetRecoilState, useRecoilState } from 'recoil'
 import { userState } from "../store/atoms/user";
 
-import img from "../assets/Computer-login-rafiki.svg"
+import img from "../../public/Computer-login-rafiki.svg"
 import { useState } from "react";
 import { snackBarState } from "../store/atoms/snackBar";
+
+
+import Image from "next/image";
 
 
 /// File is incomplete. You need to add input boxes to take input for users to login.
@@ -29,12 +32,12 @@ function Login() {
     const setSnackBarDetail = useSetRecoilState(snackBarState)
 
     const login = async () => {
-        try{
+        try {
             const loginRes = await loginUser({ username: email, password }, isAdmin)
             if (loginRes.message = "Logged in successfully") {
                 setUser({ loading: false, userEmail: loginRes.email })
                 router.push('/')
-            }else{
+            } else {
                 setSnackBarDetail({
                     type: 'error',
                     message: loginRes.message,
@@ -43,7 +46,7 @@ function Login() {
                     showSnackBar: true
                 })
             }
-        }catch(e){
+        } catch (e) {
             setSnackBarDetail({
                 type: 'error',
                 message: e?.response?.data?.message || "invalid inputs",
@@ -53,32 +56,21 @@ function Login() {
                 // showAlert: true,
             })
         }
-       
+
     }
 
     return (
 
         <Grid container sx={{ justifyContent: 'space-between' }}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} sx={{ height: "90vh", display: 'flex', flexWrap: 'wrap', alignContent: 'center', justifyContent: 'center', display: { xs: 'none', sm: 'flex' } }}>
                 <Box sx={{
                     height: "90vh", display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-around'
                 }}>
-                    <Box
-                        component="div"
-                        // src={gif}
-                        sx={{
-                            // width: "85%",
-                            height: "800px",
-                            backgroundImage: `url(${img})`,
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            overflow: 'hidden'
-
-                        }}
-                    />
+                    <Box component="div">
+                        <Image src={img} height="800" />
+                    </Box>
                 </Box>
             </Grid>
             <Grid item xs={12} md={6} sx={{ height: "90vh", display: 'flex', flexWrap: 'wrap', alignContent: 'center', justifyContent: 'center' }}>
@@ -88,7 +80,6 @@ function Login() {
                         flexWrap: 'wrap',
                         '& > :not(style)': {
                             m: 1,
-
                             width: 528,
                             height: 428,
                         },
@@ -103,7 +94,7 @@ function Login() {
                             // justifyContent: 'center'
                         }}
                     >
-
+                        <Box sx={{width: "100%", display: "flex", justifyContent: "space-around"}}>
                         <AccountCircle
                             sx={{
                                 mt: 2,
@@ -113,8 +104,10 @@ function Login() {
                                 textAlign: "center",
                             }}
                         />
+                        </Box>
 
-                        <Box sx={{display: 'flex', alignItem:'center', justifyContent: 'center'}}>
+
+                        <Box sx={{ display: 'flex', alignItem: 'center', justifyContent: 'center' }}>
                             <Stack direction="row" spacing={1} alignItems="center">
                                 <Typography>User</Typography>
                                 <Switch inputProps={{ 'aria-label': 'ant design' }} onChange={(e) => { setIsAdmin(true) }} />
@@ -136,7 +129,7 @@ function Login() {
                             </Box>
 
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }} mb={0}>
-                                <Typography variant="h9" gutterBottom={3}>New here? <a href="/signup">Register</a> </Typography>
+                                <Typography variant="h9" gutterBottom>New here? <a href="/Register">Register</a> </Typography>
                                 <Button onClick={login} variant="contained" >Login</Button>
 
                             </Box>

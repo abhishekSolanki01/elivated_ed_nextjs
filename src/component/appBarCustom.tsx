@@ -32,8 +32,8 @@ import { useRouter } from 'next/router';
 
 
 
-const user_pages = [{name:'courses', route: '/courses'}, {name:'purchased', route: '/courses/purchased'}, {name: 'ContactUs', route: "/"}];
-const admin_pages = [{name:'courses', route: '/courses'}, {name: 'ContactUs', route: "/"}];
+const user_pages = [{name:'courses', route: '/ShowCourses'}, {name:'purchased', route: '/ShowPurchasedCourses'}, {name: 'ContactUs', route: "/"}];
+const admin_pages = [{name:'courses', route: '/ShowCourses'}, {name: 'ContactUs', route: "/"}];
 
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -78,7 +78,7 @@ function AppBarCustom() {
     handleCloseUserMenu()
     // console.log(target.toLowerCase());
     if(target.toLowerCase() === 'logout'){
-      const logoutRes = await logout()
+      const logoutRes = await logout(null)
       if(logoutRes.status){
         // localStorage.setItem("isAdmin", false)
         setCookie("isAdmin", false)

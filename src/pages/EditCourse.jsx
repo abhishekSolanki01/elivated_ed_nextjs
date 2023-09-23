@@ -18,7 +18,7 @@ import {
 } from "../store/selectors/course"
 import { useEffect } from "react";
 import { editCourse } from "../axios";
-import CustomSnackBar from "./helperComponents/CustomSnackBar";
+import CustomSnackBar from "../component/CustomSnackBar";
 import { snackBarState } from "../store/atoms/snackBar";
 
 

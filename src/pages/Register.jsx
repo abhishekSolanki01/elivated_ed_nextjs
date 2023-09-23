@@ -14,7 +14,8 @@ import { Box, Button, Typography, Grid } from "@mui/material";
 import { useSetRecoilState } from 'recoil'
 import { userState } from "../store/atoms/user";
 
-import img from "../assets/Mobile-login-rafiki.svg"
+import img from "../../public/Mobile-login-rafiki.svg"
+import Image from "next/image";
 
 
 /// File is incomplete. You need to add input boxes to take input for users to register.
@@ -35,26 +36,15 @@ function Register() {
     return (
 
         <Grid container sx={{ justifyContent: 'space-between' }}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} sx={{ display: { xs: 'none', sm: 'inherit' }}}>
                 <Box sx={{
                     height: "90vh", display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-around'
                 }}>
-                    <Box
-                        component="div"
-                        // src={gif}
-                        sx={{
-                            // width: "85%",
-                            height: "800px",
-                            backgroundImage: `url(${img})`,
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            overflow: 'hidden'
-
-                        }}
-                    />
+                    <Box component="div">
+                        <Image src={img} height="800" />
+                    </Box>
                 </Box>
             </Grid>
             <Grid item xs={12} md={6} sx={{ height: "90vh", display: 'flex', flexWrap: 'wrap', alignContent: 'center', justifyContent: 'center' }}>
@@ -72,11 +62,13 @@ function Register() {
 
                     <Paper elevation={3} sx={{
                         // display: "flex", 
+                        width: "100%",
                         borderRadius: '30px', 
                         // alignItems: 'center',
                         // justifyContent: 'center'
                     }} >
 
+                        <Box sx={{width: "100%", display: "flex", justifyContent: "space-around"}}>
                         <AccountCircle sx={{
                             mt: 3,
                             // position: 'absolute', top: '15%', left: '50%', 
@@ -84,6 +76,7 @@ function Register() {
                             // transform: "translateX(-50%)",
                             textAlign: "center",
                         }} />
+                        </Box>
 
                         <Box sx={{ '& > :not(style)': { m: 4 }, m: 5, height: "auto" }}>
                             <Typography variant="h4">Register to the Site</Typography>
@@ -101,7 +94,7 @@ function Register() {
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', t: 3 }} t={3}>
                                 <Button onClick={register} variant="contained" >Signup</Button>
                             </Box>
-                            <Typography variant="h9">Already a user? <a href="/login">Login</a> </Typography>
+                            <Typography variant="h9">Already a user? <a href="/Login">Login</a> </Typography>
 
                         </Box>
 

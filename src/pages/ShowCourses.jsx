@@ -3,14 +3,16 @@ import React from "react";
 import { fetchPurchasedCourse, purchaseCourse, viewAllCourses } from "../axios";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import CourseCard from "./helperComponents/CourseCard";
+import CourseCard from "../component/CourseCard";
 import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 
 
 function ShowCourses() {
     const [courses, setCourses] = React.useState([]);
-    const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
-    const navigate = useNavigate ()
+    const isAdmin =  getCookie('isAdmin');
+    const router = useRouter()
 
 
     // Add code to fetch courses from the server
@@ -50,7 +52,7 @@ function ShowCourses() {
                                 index={index} 
                                 imageLink={c.imageLink} 
                                 actions={isAdmin? [] : actions}
-                                onCardClick={() => {navigate(`/courses/${c._id}`)}}
+                                onCardClick={() => {router.push(`/courses/${c._id}`)}}
                             />
                         )}
                         )}

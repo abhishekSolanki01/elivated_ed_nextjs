@@ -1,24 +1,30 @@
 import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+// import { useParams, useSearchParams } from "react-router-dom";
 import { purchaseCourse, viewCourse } from "../axios";
 import { courseDetails } from "../store/selectors/course";
 import EditCourse from "./EditCourse";
-import CourseCard from "./helperComponents/CourseCard";
+import CourseCard from "../component/CourseCard";
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import { courseState } from "../store/atoms/courses";
 import { useEffect } from "react";
 import CourseDetails from './CourseDetails'
 import { snackBarState } from "../store/atoms/snackBar";
+import { getCookie } from "cookies-next";
+
+import { useParams } from 'next/navigation'
 
 function ShowSelectedCourses() {
-    const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
-    const [searchParams, setSearchParams] = useSearchParams();
-    const isPurchased = JSON.parse(searchParams.get('purchased'))
-    const { id: courseId } = useParams()
+    const isAdmin = JSON.parse(getCookie('isAdmin') || "false");
+    // const [searchParams, setSearchParams] = useSearchParams();
+    const isPurchased = true//JSON.parse(searchParams.get('purchased'))
+    // const { id: courseId } = useParams()
     const [courseDetail, setCourse] = useRecoilState(courseState);
     const setSnackBarDetails = useSetRecoilState(snackBarState)
     const [disableBuy, setDisableBuy] = useState(false)
+
+    const params = useParams()
+    console.log("PARAMS", params);
 
 
 

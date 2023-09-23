@@ -3,7 +3,7 @@ import { Box, Container, Grid, Stack, Typography, Button } from "@mui/material";
 import React from "react";
 import { useRouter } from 'next/router';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import img from "../assets/Thesis-rafiki-detailed.svg"
+import img from "../../public/Thesis-rafiki-detailed.svg"
 
 import { fetchPurchasedCourse, purchaseCourse, viewAllCourses } from "../axios";
 import { styled } from '@mui/material/styles';
@@ -13,6 +13,7 @@ import { userState } from "../store/atoms/user";
 import {userEmailStatus} from '../store/selectors/userEmail'
 import { snackBarState } from "../store/atoms/snackBar";
 import { useState } from "react";
+import Image from "next/image";
 
 function Landing() {
     const router = useRouter()
@@ -37,8 +38,8 @@ function Landing() {
                             <Typography gutterBottom={4} sx={{display: "flex", flexWrap:"wrap"}} variant="h3">Simplify  <span style={{color: '#41a5f5'}}>Learning</span>, Amplify <span style={{color: "#41a5f5"}}>Growth</span></Typography>
                             <Typography variant="h5" sx={{textAlign:"initial"}}>Welcome to <span style={{color:"#41a5f5"}}>LEARNit</span>, your gateway to a world of knowledge and skill enhancement! Our cutting-edge course selling web application is designed to help educators, professionals, and knowledge seekers easily create, market, and sell their courses online.</Typography>
                             {!user && <Stack spacing={2} mt={6} direction="row" alignItems="center" justifyContent="center">
-                                <Button variant="contained" onClick={() => { router.push('/login') }} >Login</Button>
-                                <Button variant="outlined" onClick={() => { router.push('/signup') }}  >Signup</Button>
+                                <Button variant="contained" onClick={() => { router.push('/Login') }} >Login</Button>
+                                <Button variant="outlined" onClick={() => { router.push('/Register') }}  >Signup</Button>
                             </Stack>}
 
                         </Box>
@@ -51,19 +52,9 @@ function Landing() {
                         flexDirection: 'column',
                         justifyContent: 'space-around'
                     }}>
-                        <Box
-                            component="div"
-                            // src={gif}
-                            sx={{
-                                // width: "85%",
-                                height: "500px",
-                                backgroundImage: `url(${img})`,
-                                backgroundPosition: 'center',
-                                backgroundSize: 'cover',
-                                backgroundRepeat: 'no-repeat',
-                                overflow: 'hidden'
-                            }}
-                        />
+                        <Box component="div">
+                            <Image src={img} height="100vh" />
+                        </Box>
                     </Box>
                 </Grid>
             </Grid>
@@ -90,7 +81,8 @@ const Courses = () => {
     const [courses, setCourses] = React.useState([]);
     const user = useRecoilValue(userEmailStatus)
     const [disableBuy, setDisableBuy] = useState(false)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    const router = useRouter()
     const setSnackBarDetails = useSetRecoilState(snackBarState)
 
 
@@ -149,7 +141,9 @@ const Courses = () => {
                             index={index}
                             imageLink={c.imageLink}
                             actions={actions}
-                            onCardClick={() => {router.push(`/courses/${c._id}/?purchased=${purchased}`)}}
+                            onCardClick={() => {router.push(`/ShowSelectedCourse/${c._id}/${purchased}`)}}
+                            // onCardClick={() => {router.push(`/ShowSelectedCourse/purchased/sadasdasd`)}}
+
                         />
                     )
                 }
