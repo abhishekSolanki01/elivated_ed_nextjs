@@ -5,13 +5,13 @@ import React, { useState } from "react";
 // import { useParams, useSearchParams } from "react-router-dom";
 import { purchaseCourse, viewCourse } from "../../../../axios";
 // import { courseDetails } from "../store/selectors/course";
-import EditCourse from "../../../EditCourse";
+import EditCourse from "../../../EditCourse.page";
 import CourseCard from "../../../../component/CourseCard";
 import {useRecoilState, useSetRecoilState} from 'recoil';
 
 import { courseState } from "../../../../store/atoms/courses";
 import { useEffect } from "react";
-import CourseDetails from '../../../CourseDetails'
+import CourseDetails from '../../../CourseDetails.page'
 import { snackBarState } from "../../../../store/atoms/snackBar";
 import { getCookie, getCookies } from "cookies-next";
 
