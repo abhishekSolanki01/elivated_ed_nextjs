@@ -1,8 +1,8 @@
 import axios from "axios"
 import { setCookie,getCookie } from 'cookies-next';
 
-const url = process.env.BE_URL+"users" //"http://localhost:3000/api/users" //`/users`
-const admin_url = process.env.BE_URL+"admin" //"http://localhost:3000/api/admin" //`/admin`
+const url = "api/users" //"http://localhost:3000/api/users" //`/users`
+const admin_url =  "api/admin" //"http://localhost:3000/api/admin" //`/admin`
 
 // const url = "https://ec2-16-171-142-201.eu-north-1.compute.amazonaws.com:3000/users";
 // const admin_url = "https://ec2-16-171-142-201.eu-north-1.compute.amazonaws.com:3000/admin"
