@@ -1,8 +1,8 @@
 import axios from "axios"
 import { setCookie,getCookie } from 'cookies-next';
 
-const url = `${process.env.NEXT_PUBLIC_BE_URL}api/users` //"http://localhost:3000/api/users" //`/users`
-const admin_url =  `${process.env.NEXT_PUBLIC_BE_URL}api/admin` //"http://localhost:3000/api/admin" //`/admin`
+const url = "https://elivated-ed-nextjs.vercel.app/api/users" //`/users`
+const admin_url =  "https://elivated-ed-nextjs.vercel.app/api/admin" //`/admin`
 
 // const url = "https://ec2-16-171-142-201.eu-north-1.compute.amazonaws.com:3000/users";
 // const admin_url = "https://ec2-16-171-142-201.eu-north-1.compute.amazonaws.com:3000/admin"
@@ -105,13 +105,16 @@ export const fetchPurchasedCourse = async() => {
 export const loginStatus = async() => {
     let isAdmin = JSON.parse(localStorage.getItem('isAdmin') || "false");
     let URL = JSON.parse(isAdmin) ? admin_url : url;
+    console.log("url===>",`${URL}/me`);
     const status = await axios({
         method: 'get',
-        url: `${URL}/me`,
+        url: "http://localhost:3000/api/users/me",//`${URL}/me`,
         headers : {
             "Authorization" : `Bearer ${localStorage.getItem("token")}`
         }
     })
+    
+    
     return status.data;
 }
 
