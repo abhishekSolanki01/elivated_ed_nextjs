@@ -15,7 +15,17 @@ const nextConfig = {
     return config
   }
 }
+
+async rewrites() {
+  return [
+    {
+      source: '/api/:path*',
+      destination: 'https://elivated-ed-nextjs.vercel.app/api/:path*',
+    },
+  ]
+},
 module.exports = {
+  rewrites,
   nextConfig,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 }
