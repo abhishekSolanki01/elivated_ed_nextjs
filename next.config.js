@@ -16,16 +16,16 @@ const nextConfig = {
   }
 }
 
-const rewrites = async() => {
-  return [
-    {
-      source: '/api/:path*',
-      destination: 'https://elivated-ed-nextjs.vercel.app/api/:path*',
-    },
-  ]
-},
+// const rewrites = async() => {
+//   return [
+//     {
+//       source: '/api/:path*',
+//       destination: 'https://elivated-ed-nextjs.vercel.app/api/:path*',
+//     },
+//   ]
+// },
 module.exports = {
-  rewrites,
+  // rewrites,
   nextConfig,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 }
