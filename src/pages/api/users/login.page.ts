@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 
 const handler = async(req: any, res: any) => {
     try {
+        return res.status(200).json({ message: 'Invalid username or password' });
         if(req.method === "POST"){   
             const { username, password } = req.headers;
             const user = await User.exists({ username, password });
