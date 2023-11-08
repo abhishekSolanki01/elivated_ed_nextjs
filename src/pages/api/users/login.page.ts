@@ -4,13 +4,13 @@ import jwt from "jsonwebtoken";
 
 const handler = async(req: any, res: any) => {
     try {
-        return res.status(200).json({ message: 'Invalid username or password --- test' });
+        // return res.status(200).json({ message: 'Invalid username or password --- test' });
         if(req.method === "POST"){   
             console.log("inside")
             const { username, password } = req.headers;
             console.log("username, password", username, password)
             const user = await User.exists({ username, password });
-            console.log(user",user)
+            console.log("user",user)
             if(user){
               const token = jwt.sign({ username, role: 'user' }, process.env.SECRET || "", { expiresIn: '100h' });
                 
