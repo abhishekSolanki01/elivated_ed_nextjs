@@ -1,11 +1,13 @@
 import withMiddleware from "@/middleware"
 import { User } from "../../../../db/models/user";
 import jwt from "jsonwebtoken";
+import { connectToDataBase } from "../../../../db/database";
 
 const handler = async(req: any, res: any) => {
     try {
         // return res.status(200).json({ message: 'Invalid username or password --- test' });
         if(req.method === "POST"){   
+            await connectToDataBase()
             console.log("inside")
             const { username, password } = req.headers;
             console.log("username, password", username, password)
