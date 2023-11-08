@@ -1,8 +1,12 @@
 import { User } from "../../../../db/models/user";
 import jwt from 'jsonwebtoken';
+import { connectToDataBase } from "../../../../db/database";
+
 
 const handler = async(req: any, res: any) => {
     if(req.method === "POST"){
+        await connectToDataBase()
+
         const { username, password } = req.body;
         if(!username || !password ){
           res.status(403).json({ message: 'enter correct email and password' });
