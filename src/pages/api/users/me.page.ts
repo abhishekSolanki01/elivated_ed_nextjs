@@ -1,11 +1,12 @@
 import withMiddleware from "@/middleware"
 import { User } from "../../../../db/models/user"
+import { connectToDataBase } from "../../../../db/database";
 
 const handler = async (req: any, res: any) => {
     try {
 
         if (req.method === "GET") {
-
+            await connectToDataBase()
             console.log("i am here ------->",req.user.username);
             const isUserExist = await User.exists({ username: req.user.username })
             if (!isUserExist) {
