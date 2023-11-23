@@ -33,7 +33,7 @@ function ShowCourses() {
 
     return (
         <Grid sx={{ flexGrow: 1 }} container spacing={2} mb={3}>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ display: "flex", flexDirection: "column", color: "#41a5f5" }}>
                 <Typography variant='h4'>Courses</Typography>
             </Grid>
             <Grid item xs={12}>
