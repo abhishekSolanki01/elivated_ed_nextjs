@@ -67,9 +67,10 @@ export const viewAllCourses = async() => {
 }
 
 export const viewCourse = async(id: any) => {
-    console.log("HERE------");
+    
     let isAdmin = JSON.parse(localStorage.getItem('isAdmin') || "false");
     let URL = JSON.parse(isAdmin) ? admin_url : url;
+    console.log("HERE------", `${URL}/courses/${id}`);
     const courses = await axios({
         method: "get",
         url: `${URL}/courses/${id}`,
@@ -108,7 +109,7 @@ export const loginStatus = async() => {
     console.log("url===>",`${URL}/me`);
     const status = await axios({
         method: 'get',
-        url: "http://localhost:3000/api/users/me",//`${URL}/me`,
+        url: `${URL}/me`, //"http://localhost:3000/api/users/me"
         headers : {
             "Authorization" : `Bearer ${localStorage.getItem("token")}`
         }
